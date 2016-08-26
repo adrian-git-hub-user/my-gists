@@ -1,3 +1,6 @@
+scala -J-Xms4096m -J-Xmx4096m
+
+
 object MeasureEntropy extends App {
 
   val s = "measure measure here measure measure measure"
