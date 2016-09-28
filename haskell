@@ -1,3 +1,7 @@
 ********* Random number ******************
 System.Random.randomRIO (1, 10)
 
+getStr :: String
+getStr = "getStr"
+
+"e" ++ "e" ++ getStr
