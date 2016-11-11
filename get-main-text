@@ -1,0 +1,37 @@
+Main.scala
+
+import de.l3s.boilerpipe.extractors.ArticleExtractor
+import sys.process._
+
+object Main extends App {
+
+	val t = getText("http://www.rte.ie/news/2016/1111/830806-pay/")
+
+	println(t)
+
+   	def getText(url : String) : String = {
+      try {
+
+        	val htmlText = ("wget -t 1 -qO- " + url !!).toString
+			// NOTE: Use ArticleExtractor unless DefaultExtractor gives better results for you 
+        	ArticleExtractor.INSTANCE.getText(htmlText);
+
+      } catch {
+        case e: Exception => println("******* 	Exception accessing - " + url + " , " + e.getMessage);
+        e.getMessage
+      }
+  	}
+
+}
+
+build.sbt
+
+scalaVersion := "2.11.7"
+
+// https://mvnrepository.com/artifact/com.syncthemall/boilerpipe
+libraryDependencies += "com.syncthemall" % "boilerpipe" % "1.2.2"
+
+// for debugging sbt problems
+logLevel := Level.Debug
+
+
